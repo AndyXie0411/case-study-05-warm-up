@@ -3,6 +3,10 @@ from flask import Flask, render_template, request, jsonify
 import requests
 
 app = Flask(__name__)
+# Add this anywhere after app = Flask(__name__)
+@app.get("/api/health")
+def health():
+    return jsonify(status="ok"), 200
 
 # ----- TinyLlama via Ollama settings (Stage 2) -----
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434")
